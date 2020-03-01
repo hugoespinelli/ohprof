@@ -11,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import SelectWithLabel from './selectwithlabel';
 import Requester from '../services/requester';
 
+
 function VoteDialog({open, handleClose, enqueueSnackbar, teacherId}) {
 
   const [questions, setQuestions] = React.useState([]);
@@ -51,46 +52,20 @@ function VoteDialog({open, handleClose, enqueueSnackbar, teacherId}) {
   }
 
   return (
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" scroll={'body'}>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+      scroll={'body'}
+      PaperProps={{style: {overflowY: 'visible'}}}
+    >
       <DialogTitle id="form-dialog-title">Votação</DialogTitle>
-      <DialogContent>
+      <DialogContent style={{ overflowY: 'visible' }}>
         <DialogContentText>
           Agora vamos votar nesse professor. Vote consciente, tem abiguinhos que precisam disso :D.
         </DialogContentText>
 
         { createSelects(questions) }
-
-        {/*<SelectWithLabel*/}
-        {/*  label={'Explicação'}*/}
-        {/*  options={[*/}
-        {/*    {label: 'Fala grego', value: 0},*/}
-        {/*    {label: 'Compreensível, mas dá sono', value: 1},*/}
-        {/*    {label: 'Entendo direitinho', value: 2},*/}
-        {/*    {label: 'Nem vejo a hora passar', value: 3},*/}
-        {/*  ]}*/}
-        {/*  onChange={(value) => setExplicacao(value)}*/}
-        {/*/>*/}
-
-        {/*<SelectWithLabel*/}
-        {/*  label={'Presença'}*/}
-        {/*  options={[*/}
-        {/*    {label: 'Não', value: -1},*/}
-        {/*    {label: 'É de lua, cobra quando quer', value: 0},*/}
-        {/*    {label: 'Sim', value: 1},*/}
-        {/*  ]}*/}
-        {/*  onChange={(value) => setPresenca(value)}*/}
-        {/*/>*/}
-
-        {/*<SelectWithLabel*/}
-        {/*  label={'Prova'}*/}
-        {/*  options={[*/}
-        {/*    {label: 'Dá não', value: 0},*/}
-        {/*    {label: 'Estuda mucho', value: 1},*/}
-        {/*    {label: 'Dou aquela revisada antes da prova', value: 2},*/}
-        {/*    {label: 'Preciso saber nem que dia é a prova', value: 3},*/}
-        {/*  ]}*/}
-        {/*  onChange={(value) => setProva(value)}*/}
-        {/*/>*/}
 
       </DialogContent>
 
