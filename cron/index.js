@@ -13,17 +13,24 @@ function log(msg) {
 cron.schedule("* * * * *", async () => {
   log('Iniciando atualização de votos');
 
-  log("Deletando votos...");
-  await deleteOldVotes();
-  log("Votos deletados.");
+  try {
+    log("Deletando votos...");
+    await deleteOldVotes();
+    log("Votos deletados.");
 
-  log("Inserindo novos votos...");
-  await insertNewVotes();
-  log("Votos inseridos.");
+    log("Inserindo novos votos...");
+    await insertNewVotes();
+    log("Votos inseridos.");
 
-  log("Atualizando numero de votos de professores...");
-  await updateCountVotes();
-  log("Numero de votos de professores atualizado.");
+    log("Atualizando numero de votos de professores...");
+    await updateCountVotes();
+    log("Numero de votos de professores atualizado.");
+  } catch (e) {
+    log('Ocorreu um erro na rotina');
+    log(e);
+    process.exit(1);
+  }
+
 
   log('Atualização de votos finalizada');
 });

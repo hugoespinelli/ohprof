@@ -14,6 +14,8 @@ services:
       - "80:80"
     networks:
       - backend
+  cron:
+    build: "./cron"
 networks:
   backend:
     driver: bridge
