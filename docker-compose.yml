@@ -4,7 +4,16 @@ services:
     build: "./back"
     ports:
       - "3000:3000"
+    links:
+      - front
+    networks:
+      - backend
   front:
     build: "./front"
     ports:
       - "80:80"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge

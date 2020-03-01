@@ -72,7 +72,7 @@ function TeacherPage({history, enqueueSnackbar}) {
 
     return (
       params.map(({field, msg, value, min, max}) => (
-        <Grid item style={{width: `calc(100%/${params.length})`}} key={field+msg+value}>
+        <Grid item style={{width: `calc(100%/${params.length})`}} key={field+msg+value} xs={6} sm>
           <CircularProgressbarWithChildren
             minValue={min}
             maxValue={max}
@@ -85,7 +85,7 @@ function TeacherPage({history, enqueueSnackbar}) {
           >
             <Typography variant={'button'} >{field}</Typography>
             <Typography variant={'caption'} align={'center'} color={'textSecondary'} >{msg}</Typography>
-            <Typography variant={'caption'} align={'center'} color={'textSecondary'} >{value}/100</Typography>
+            <Typography variant={'caption'} align={'center'} color={'textSecondary'} >{value}/{max}</Typography>
           </CircularProgressbarWithChildren>
         </Grid>
       ))
@@ -137,7 +137,7 @@ function TeacherPage({history, enqueueSnackbar}) {
                 {getParagraph('Skills')}
               </Grid>
 
-              <Grid container spacing={3} style={{padding: '0 36px'}}>
+              <Grid container spacing={3} style={{padding: '0 16px'}}>
                 { getCircularsProgress(skillsTransformed)}
               </Grid>
             </Grid>

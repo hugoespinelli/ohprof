@@ -15,7 +15,7 @@ class Teacher extends Model{
   static list(page, filter, by = '') {
     try {
       return Teacher.query()
-        .withGraphFetched('[faculdades, materias]')
+        .withGraphFetched('[faculdade, materia]')
         .where(filter, 'like', `%${by}%`)
         .orderBy('nome', 'asc')
         .page(page, FETCH_LIMIT);
@@ -28,7 +28,7 @@ class Teacher extends Model{
   static get(id) {
     return Teacher.query()
       .findOne({id})
-      .withGraphFetched('[faculdades, materias, skills.mensagem]')
+      .withGraphFetched('[faculdade, materia, skills.mensagem]')
   }
 
   static get relationMappings() {
@@ -41,7 +41,7 @@ class Teacher extends Model{
     const skills_teacher_relation_table = 'atualizacao_professores_skills';
 
     return {
-      faculdades: {
+      faculdade: {
         relation: Model.ManyToManyRelation,
         modelClass: College,
         join: {
@@ -53,7 +53,7 @@ class Teacher extends Model{
           to: `${College.tableName}.${College.idColumn}`
         }
       },
-      materias: {
+      materia: {
         relation: Model.ManyToManyRelation,
         modelClass: Course,
         join: {
@@ -82,8 +82,8 @@ class Teacher extends Model{
   }
 
   concatCourseAndCollege() {
-    this.materias = stringConcatByField(this.materias, 'nome');
-    this.faculdades = stringConcatByField(this.faculdades, 'nome');
+    this.materia = stringConcatByField(this.materia, 'nome');
+    this.faculdade = stringConcatByField(this.faculdade, 'abbrev');
     return this;
   }
 
