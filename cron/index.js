@@ -10,7 +10,7 @@ function log(msg) {
   console.log(`[${new Date(Date.now()).toString()}] - ${msg}`);
 }
 
-cron.schedule("* * * * *", async () => {
+cron.schedule("0 */1 * * *", async () => {
   log('Iniciando atualização de votos');
 
   try {

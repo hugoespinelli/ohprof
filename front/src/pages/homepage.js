@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import MaterialTable from 'material-table';
 import {DebounceInput} from 'react-debounce-input';
 import { withSnackbar } from 'notistack';
+import Typist from 'react-typist';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -11,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Search from '@material-ui/icons/Search'
@@ -43,12 +45,17 @@ function Homepage({history, enqueueSnackbar}) {
 
   function searcher(value) {
     const fetchTeachers = async () => {
-      const { data, status} = await Requester.get(`/professores?nome=${value}`);
-      if (status < 300) {
-        setTeachers(data.results);
-      } else {
-        enqueueSnackbar('Não foi possível buscar os professores', {variant: 'error' });
+      try {
+        const { data, status } = await Requester.get(`/professores?nome=${value}`);
+        if (status < 300) {
+          setTeachers(data.results);
+        } else {
+          enqueueSnackbar('Não foi possível buscar os professores', {variant: 'error' });
+        }
+      } catch (e) {
+          console.log(e);
       }
+
     };
     fetchTeachers();
   }
@@ -119,6 +126,23 @@ function Homepage({history, enqueueSnackbar}) {
 
   return (
     <>
+      <Grid container justify={'center'}>
+        <Grid item xs={12}>
+          <Typography variant={'h2'} color={'textSecondary'}>
+            <Typist startDelay={1000}>
+              Ache o seu professor ideal
+            </Typist>
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant={'subtitle1'} color={'textSecondary'}>
+            Sistema de ranqueamento de professores universitários
+          </Typography>
+        </Grid>
+      </Grid>
+      <br />
+      <br />
+      <br />
       <Grid container justify='center'>
 
         { is_small_screen ? renderMobileSearchbar() : renderLargeScreenSearchbar()}

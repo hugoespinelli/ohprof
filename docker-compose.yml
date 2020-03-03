@@ -4,18 +4,17 @@ services:
     build: "./back"
     ports:
       - "3000:3000"
-    links:
-      - front
     networks:
-      - backend
+      - custom-network
+    links:
+      - "front:frt"
   front:
     build: "./front"
     ports:
       - "80:80"
     networks:
-      - backend
+      - custom-network
   cron:
     build: "./cron"
 networks:
-  backend:
-    driver: bridge
+  custom-network:

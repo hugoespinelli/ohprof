@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { withRouter } from 'react-router';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import { withSnackbar } from 'notistack';
@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Typography  from '@material-ui/core/Typography';
 import Button  from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
@@ -39,11 +41,15 @@ function TeacherPage({history, enqueueSnackbar}) {
 
   useEffect( () => {
     const fetchData = async () => {
-      const { data, status} = await Requester.get(`/professores/${teacherId}`);
-      if (status < 300) {
-        setTeacher(data);
-      } else {
-        enqueueSnackbar('Não foi possível buscar o professor', {variant: 'error' });
+      try {
+        const { data, status} = await Requester.get(`/professores/${teacherId}`);
+        if (status < 300) {
+          setTeacher(data);
+        } else {
+          enqueueSnackbar('Não foi possível buscar o professor', {variant: 'error' });
+        }
+      } catch (e) {
+        console.log(e);
       }
     };
     fetchData();
@@ -113,7 +119,9 @@ function TeacherPage({history, enqueueSnackbar}) {
   return (
     <>
       <Grid container justify='flex-start'>
-        <Link to="/">Voltar</Link>
+        <Fab color="default" aria-label="add" size={"small"} onClick={() => history.goBack()}>
+          <ArrowBackIosIcon style={{width: '16px'}} />
+        </Fab>
       </Grid>
       <br />
       <Grid container justify='center'>
