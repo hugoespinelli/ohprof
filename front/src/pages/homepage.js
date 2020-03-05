@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { withRouter } from 'react-router';
 import classNames from 'classnames'; 
 import MaterialTable from 'material-table';
@@ -41,23 +41,24 @@ function Homepage({history, enqueueSnackbar}) {
   const classes = useStyles();
   const is_small_screen = useMediaQuery('(max-width: 500px)');
   const [teachers, setTeachers] = useState([]);
-  const [searchField, setSearchField] = useState('');
+  const [searchField] = useState('');
+
+  const fetchTeachers = async (value) => {
+    try {
+      const { data } = await Requester.get(`/professores?nome=${value}`);
+      setTeachers(data.results);
+    } catch (e) {
+      enqueueSnackbar('Não foi possível buscar os professores! Verifque sua conexão com a internet :(', {variant: 'error' });
+    }
+
+  };
+
+  useEffect(() => {
+    fetchTeachers('');
+  });
 
   function searcher(value) {
-    const fetchTeachers = async () => {
-      try {
-        const { data, status } = await Requester.get(`/professores?nome=${value}`);
-        if (status < 300) {
-          setTeachers(data.results);
-        } else {
-          enqueueSnackbar('Não foi possível buscar os professores', {variant: 'error' });
-        }
-      } catch (e) {
-          console.log(e);
-      }
-
-    };
-    fetchTeachers();
+    fetchTeachers(value);
   }
 
   function renderMobileSearchbar() {

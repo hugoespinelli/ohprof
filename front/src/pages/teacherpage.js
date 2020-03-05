@@ -42,13 +42,10 @@ function TeacherPage({history, enqueueSnackbar}) {
   useEffect( () => {
     const fetchData = async () => {
       try {
-        const { data, status} = await Requester.get(`/professores/${teacherId}`);
-        if (status < 300) {
-          setTeacher(data);
-        } else {
-          enqueueSnackbar('Não foi possível buscar o professor', {variant: 'error' });
-        }
+        const { data } = await Requester.get(`/professores/${teacherId}`);
+        setTeacher(data);
       } catch (e) {
+        enqueueSnackbar('Não foi possível buscar o professor, verifique a conexão com sua internet', {variant: 'error' });
         console.log(e);
       }
     };
