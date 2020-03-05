@@ -4,17 +4,9 @@ services:
     build: "./back"
     ports:
       - "3000:3000"
-    networks:
-      - custom-network
-    links:
-      - "front:frt"
   front:
     build: "./front"
     ports:
       - "80:80"
-    networks:
-      - custom-network
   cron:
     build: "./cron"
-networks:
-  custom-network:

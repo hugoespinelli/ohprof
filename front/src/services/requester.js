@@ -5,7 +5,7 @@ class Requester {
     this.instance = axios.create({
       // baseURL: 'https://private-5e878-ohprof.apiary-mock.com',
       // baseURL: 'http://192.168.99.1:5000',
-      baseURL: 'http://back:3000',
+      baseURL: 'http://localhost:3000',
       timeout: 10000
     })
   }
