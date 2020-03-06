@@ -41,11 +41,11 @@ function Homepage({history, enqueueSnackbar}) {
   const classes = useStyles();
   const is_small_screen = useMediaQuery('(max-width: 500px)');
   const [teachers, setTeachers] = useState([]);
-  const [searchField] = useState('');
+  const [searchField, setSearchField] = useState('');
 
-  const fetchTeachers = async (value) => {
+  const fetchTeachers = async () => {
     try {
-      const { data } = await Requester.get(`/professores?nome=${value}`);
+      const { data } = await Requester.get(`/professores?nome=${searchField}`);
       setTeachers(data.results);
     } catch (e) {
       enqueueSnackbar('Não foi possível buscar os professores! Verifque sua conexão com a internet :(', {variant: 'error' });
@@ -54,15 +54,15 @@ function Homepage({history, enqueueSnackbar}) {
   };
 
   useEffect(() => {
-    fetchTeachers('');
-  });
+    fetchTeachers();
+  }, [searchField]);
 
-  function searcher(value) {
-    fetchTeachers(value);
+  function searcher() {
+    fetchTeachers();
   }
 
   function renderMobileSearchbar() {
-    const paperClasses = classNames(classes.searchBar, classes.fullWidth)
+    const paperClasses = classNames(classes.searchBar, classes.fullWidth);
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -73,7 +73,7 @@ function Homepage({history, enqueueSnackbar}) {
             <DebounceInput
               minLength={2}
               debounceTimeout={300}
-              onChange={event => searcher(event.target.value)}
+              onChange={event => setSearchField(event.target.value)}
               className={classes.fullWidth}
               placeholder={"Digite o nome do prof..."}
               inputProps={{ 'aria-label': 'digite o nome do prof' }}
@@ -103,7 +103,7 @@ function Homepage({history, enqueueSnackbar}) {
             <DebounceInput
               minLength={2}
               debounceTimeout={300}
-              onChange={event => searcher(event.target.value)}
+              onChange={event => setSearchField(event.target.value)}
               className={classes.fullWidth}
               placeholder={"Digite o nome do prof..."}
               inputProps={{ 'aria-label': 'digite o nome do prof' }}

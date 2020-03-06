@@ -15,6 +15,7 @@ import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Badge from '../components/badge';
 import VoteDialog from '../components/votedialog';
@@ -35,6 +36,7 @@ function TeacherPage({history, enqueueSnackbar}) {
   const classes = useStyles();
   const { palette } = useTheme();
   let { teacherId } = useParams();
+  const is_small_screen = useMediaQuery('(max-width: 500px)');
 
   const [open, setOpen] = useState(false);
   const [teacher, setTeacher] = useState({});
@@ -71,26 +73,40 @@ function TeacherPage({history, enqueueSnackbar}) {
       </Typography>)
   }
 
+  function GridAutoResize({children, mobile}) {
+    if (mobile) {
+      return (
+        <Grid item xs={6}>
+          { children }
+        </Grid>
+      );
+    }
+    return (
+      <Grid item style={{width: `25%`}}>
+        { children }
+      </Grid>
+    );
+  }
+
   function getCircularsProgress(params) {
 
     return (
       params.map(({field, msg, value, min, max}) => (
-        <Grid item style={{width: `calc(100%/${params.length})`}} key={field+msg+value} xs={6} sm>
+        <GridAutoResize key={field+msg+value} mobile={is_small_screen}>
           <CircularProgressbarWithChildren
             minValue={min}
             maxValue={max}
             value={value}
             strokeWidth={2}
             styles={buildStyles({
-              pathColor: palette.secondary.dark,
-              trailColor: palette.secondary.light
+              pathColor: palette.secondary.light
             })}
           >
             <Typography variant={'button'} >{field}</Typography>
             <Typography variant={'caption'} align={'center'} color={'textSecondary'} >{msg}</Typography>
             <Typography variant={'caption'} align={'center'} color={'textSecondary'} >{value}/{max}</Typography>
           </CircularProgressbarWithChildren>
-        </Grid>
+        </GridAutoResize>
       ))
     );
   }
@@ -162,6 +178,13 @@ function TeacherPage({history, enqueueSnackbar}) {
       </Grid>
 
       <VoteDialog open={open} handleClose={() => handleClose()} teacherId={teacherId}/>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
     </>
   );
 }
