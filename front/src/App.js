@@ -43,35 +43,37 @@ function App() {
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
-        <Grid item xs={12} className={classes.spaceTop}>
-          <img src={logo} height={50} alt={'logo do oh prof!'}/>
-        </Grid>
-        <br/>
-        <br/>
-        <br/>
-        <Container>
+        <Router>
+          <Grid item xs={12} className={classes.spaceTop}>
+            <img src={logo} height={50} alt={'logo do oh prof!'}/>
+          </Grid>
+          <br/>
+          <br/>
+          <br/>
+          <Container>
 
-          <SnackbarProvider maxSnack={3}>
-            <Router>
-              <Switch>
+            <SnackbarProvider maxSnack={3}>
 
-                <Route path='/professor/:teacherId'>
-                  <Teacherpage/>
-                </Route>
+                <Switch>
 
-                <Route path='/'>
-                  <Homepage/>
-                </Route>
+                  <Route path='/professor/:teacherId'>
+                    <Teacherpage/>
+                  </Route>
 
-              </Switch>
-            </Router>
-          </SnackbarProvider>
-        </Container>
+                  <Route path='/'>
+                    <Homepage/>
+                  </Route>
 
-        <br/>
-        <br/>
-        <br/>
-        <Footer classes={classes} />
+                </Switch>
+
+            </SnackbarProvider>
+          </Container>
+
+          <br/>
+          <br/>
+          <br/>
+          <Footer classes={classes} />
+        </Router>
       </ThemeProvider>
     </div>
   );

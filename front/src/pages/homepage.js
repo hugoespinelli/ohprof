@@ -43,7 +43,7 @@ function Homepage({history, enqueueSnackbar}) {
   const [teachers, setTeachers] = useState([]);
   const [searchField, setSearchField] = useState('');
 
-  const fetchTeachers = async () => {
+  const fetchTeachers = React.useCallback(async () => {
     try {
       const { data } = await Requester.get(`/professores?nome=${searchField}`);
       setTeachers(data.results);
@@ -51,11 +51,11 @@ function Homepage({history, enqueueSnackbar}) {
       enqueueSnackbar('Não foi possível buscar os professores! Verifque sua conexão com a internet :(', {variant: 'error' });
     }
 
-  };
+  }, [searchField, enqueueSnackbar]);
 
   useEffect(() => {
     fetchTeachers();
-  }, [searchField]);
+  }, [fetchTeachers]);
 
   function searcher() {
     fetchTeachers();
@@ -158,7 +158,6 @@ function Homepage({history, enqueueSnackbar}) {
           mountColumn('nota', 'Nota'),
           mountColumn('nome', 'Nome'),
           mountColumn('faculdade', 'Faculdade'),
-          mountColumn('materia', 'Matéria'),
         ]}
         options={{
           showTitle: false,

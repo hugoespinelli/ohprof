@@ -17,9 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import Badge from '../components/badge';
 import VoteDialog from '../components/votedialog';
-import jiggly from '../badges/jiggly.png';
 import Requester from '../services/requester';
 
 const useStyles = makeStyles(theme => ({
@@ -150,7 +148,6 @@ function TeacherPage({history, enqueueSnackbar}) {
               {getParagraph('Votos', votos)}
 
               {getParagraph('Selos')}
-              <Badge src={jiggly} alt={'selo jiggly'} tooltip={'Ótimo para dormir'}/>
             </Grid>
 
             <Grid container item xs={12} sm={6}>
@@ -182,8 +179,11 @@ function TeacherPage({history, enqueueSnackbar}) {
       <br />
       <br />
       <br />
-      <br />
-      <br />
+      <Typography variant={'caption'} color={'textSecondary'}>
+        * As informações mostradas nesse site refletem apenas os votos dos alunos,
+          não necessariamente reflete a realidade.
+
+      </Typography>
 
     </>
   );

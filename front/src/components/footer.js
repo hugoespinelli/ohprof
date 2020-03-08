@@ -1,10 +1,11 @@
+import * as PropTypes from "prop-types";
+import React from "react";
+import Link from '@material-ui/core/Link';
+
 import Grid from "@material-ui/core/Grid";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import Typography from "@material-ui/core/Typography";
-import * as PropTypes from "prop-types";
-import React from "react";
-
 import {makeStyles} from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -32,8 +33,10 @@ export default function Footer() {
   function renderMobile() {
     return (
       <Grid container justify={"center"} className={classes.footer}>
-          <FacebookIcon  style={{marginRight: '16px'}}/>
+        <FacebookIcon  style={{marginRight: '16px'}}/>
+        <Link href={'https://www.instagram.com/ohprofoficial/'}>
           <InstagramIcon />
+        </Link>
       </Grid>
     );
   }
@@ -43,7 +46,9 @@ export default function Footer() {
       <Grid container justify={"flex-end"} alignItems={'center'} className={classes.footer}>
         <div className={classes.socialMedia}>
           <FacebookIcon  />
-          <InstagramIcon  />
+          <Link href={'https://www.instagram.com/ohprofoficial/'}>
+            <InstagramIcon />
+          </Link>
         </div>
 
         <Typography variant={"caption"}>© 2020 Hugo Espinelli. All rights reserved. </Typography>
