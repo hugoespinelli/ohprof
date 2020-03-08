@@ -3,7 +3,7 @@ import axios from 'axios';
 class Requester {
   constructor() {
     this.instance = axios.create({
-      baseURL: 'https://private-5e878-ohprof.apiary-mock.com',
+      // baseURL: 'https://private-5e878-ohprof.apiary-mock.com',
       // baseURL: 'http://192.168.99.1:5000',
       baseURL: 'http://ohprof.com.br:3000',
       timeout: 10000
