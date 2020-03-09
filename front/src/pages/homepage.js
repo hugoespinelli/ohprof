@@ -155,7 +155,6 @@ function Homepage({history, enqueueSnackbar}) {
 
       <MaterialTable
         columns={[
-          mountColumn('nota', 'Nota'),
           mountColumn('nome', 'Nome'),
           mountColumn('faculdade', 'Faculdade'),
         ]}

@@ -45,10 +45,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Grid item xs={12} className={classes.spaceTop}>
-            <img src={logo} height={50} alt={'logo do oh prof!'}/>
+            <img src={logo} height={80} alt={'logo do oh prof!'}/>
           </Grid>
-          <br/>
-          <br/>
           <br/>
           <Container>
 

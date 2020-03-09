@@ -185,6 +185,20 @@ function TeacherPage({history, enqueueSnackbar}) {
 
       </Typography>
 
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
     </>
   );
 }
