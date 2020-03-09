@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import grey from '@material-ui/core/colors/grey';
 
 import Search from '@material-ui/icons/Search'
 
@@ -162,6 +163,9 @@ function Homepage({history, enqueueSnackbar}) {
           showTitle: false,
           search: false,
           toolbar: false,
+          headerStyle: {
+            backgroundColor: grey[50],
+          }
         }}
         localization={{
           body: {
