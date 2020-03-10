@@ -51,7 +51,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <Typography variant={"caption"}>© 2020 Hugo Espinelli. All rights reserved. </Typography>
+        <Typography variant={"caption"}>© 2020 Oh prof!. All rights reserved. </Typography>
       </Grid>
     );
   }
