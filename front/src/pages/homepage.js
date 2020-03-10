@@ -138,7 +138,7 @@ function Homepage({history, enqueueSnackbar}) {
         </Grid>
         <Grid item xs={12}>
           <Typography variant={'subtitle1'} color={'textSecondary'}>
-            Sistema de ranqueamento de professores universitários
+            Sistema de indicação de professores universitários
           </Typography>
         </Grid>
       </Grid>

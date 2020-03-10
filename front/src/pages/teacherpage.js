@@ -181,7 +181,7 @@ function TeacherPage({history, enqueueSnackbar}) {
       <br />
       <Typography variant={'caption'} color={'textSecondary'}>
         * As informações mostradas nesse site refletem apenas os votos dos alunos,
-          não necessariamente reflete a realidade.
+          eles NÃO refletem a realidade.
 
       </Typography>
 
