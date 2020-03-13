@@ -46,7 +46,7 @@ function VoteDialog({open, handleClose, enqueueSnackbar, teacherId}) {
   async function vote() {
     const result = await Requester.post(`/professores/${teacherId}/votos`, {skills: answers});
     if (result.status < 300) {
-      enqueueSnackbar('Voto efetuado com sucesso', {variant: 'success'});
+      enqueueSnackbar('Voto efetuado com sucesso! Ele será calculado brevemente :D', {variant: 'success'});
     }
     handleClose()
   }
