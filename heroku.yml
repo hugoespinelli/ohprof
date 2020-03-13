@@ -1,0 +1,7 @@
+build:
+  docker:
+    web: /back/Dockerfile
+    worker: /cron/Dockerfile
+run:
+  web: node /back/app.js
+  worker: node /back/index.js
